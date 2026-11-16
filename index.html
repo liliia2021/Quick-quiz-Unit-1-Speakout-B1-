@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit 1 Quick Quiz – B1</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f3f5f2;--surface:#ffffff;--ink:#1c2420;--muted:#5b6761;--line:#d5dcd7;
+  --accent:#1f5f4a;--accent-ink:#ffffff;--ok:#1b7a3d;--ok-bg:#e1f3e6;--bad:#b3261e;--bad-bg:#fbe4e2;--band:#dfe6e1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141a17;--surface:#1d2521;--ink:#e8eeea;--muted:#9aa8a1;--line:#33403a;
+    --accent:#6fcfa6;--accent-ink:#0f1a15;--ok:#7fdc9d;--ok-bg:#1d3a28;--bad:#ff9a92;--bad-bg:#40201e;--band:#26312c;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141a17;--surface:#1d2521;--ink:#e8eeea;--muted:#9aa8a1;--line:#33403a;
+  --accent:#6fcfa6;--accent-ink:#0f1a15;--ok:#7fdc9d;--ok-bg:#1d3a28;--bad:#ff9a92;--bad-bg:#40201e;--band:#26312c;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 Georgia,"Times New Roman",serif}
+main{max-width:720px;margin:0 auto;padding:24px 16px 120px}
+h1{font:700 1.9rem/1.2 "Trebuchet MS",Verdana,sans-serif;margin:8px 0 4px}
+.sub{color:var(--muted);margin:0 0 20px;font-family:"Trebuchet MS",Verdana,sans-serif;font-size:.95rem}
+.name{display:flex;gap:10px;align-items:center;margin-bottom:20px;font-family:"Trebuchet MS",Verdana,sans-serif;font-size:.95rem}
+.name input{flex:1;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+h2{font:700 1.05rem "Trebuchet MS",Verdana,sans-serif;background:var(--band);padding:8px 12px;margin:28px 0 12px;border-radius:4px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.q.ok{border-color:var(--ok)}.q.bad{border-color:var(--bad)}
+.q p{margin:0 0 8px;font-weight:600}
+.q p b{font-family:"Trebuchet MS",Verdana,sans-serif;margin-right:6px}
+.opt{display:flex;gap:10px;align-items:center;padding:8px 10px;margin:4px 0;border:1px solid var(--line);border-radius:6px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.opt input{accent-color:var(--accent);width:18px;height:18px;margin:0}
+.opt.sel{border-color:var(--accent)}
+.opt.right{background:var(--ok-bg);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.fb{font:.9rem "Trebuchet MS",Verdana,sans-serif;margin-top:6px;color:var(--muted)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;align-items:center;justify-content:center;font-family:"Trebuchet MS",Verdana,sans-serif}
+button{font:600 .95rem "Trebuchet MS",Verdana,sans-serif;padding:10px 18px;border-radius:6px;border:1px solid var(--accent);cursor:pointer}
+.primary{background:var(--accent);color:var(--accent-ink)}
+.ghost{background:transparent;color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#score{font-weight:700;min-width:90px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <h1>Unit 1 Quick Quiz</h1>
+  <p class="sub">B1 · Speak Out 3rd Edition. Choose the correct answer, A, B, C or D.</p>
+  <label class="name">Name: <input id="who" type="text" autocomplete="name" placeholder="Your name"></label>
+  <div id="quiz"></div>
+</main>
+<div class="bar">
+  <span id="score">0 / 17</span>
+  <button class="primary" id="check">Check answers</button>
+  <button class="ghost" id="reset">Try again</button>
+</div>
+<script>
+const sections=[
+ {t:"Grammar",q:[
+  ["She usually ___ with her friends on Friday nights.",["go out","goes out","is going out","does go out"],1],
+  ["What time ___ work in the mornings?",["do you start","does you start","you start","are you starting"],0],
+  ["Teresa ___ her lunch at the moment.",["have","has","are having","is having"],3],
+  ["___ that history book I gave you?",["You read","You are reading","Do you read","Are you reading"],3],
+  ["Can you imagine ___ a million euros?",["win","to win","winning","won"],2],
+  ["I don’t expect ___ Gerard at the meeting.",["see","to see","seeing","seen"],1],
+  ["After ___ the museum, we went to a café.",["leave","to leave","leaving","left"],2]
+ ]},
+ {t:"Vocabulary",q:[
+  ["John and I agreed to ___ by email.",["look up to","take after","stay in touch","get on well"],2],
+  ["I’ve got a few ___. I’ve known them since school.",["close friends","grandparents","managers","partners"],0],
+  ["The children are ___ so sometimes I can’t hear the TV.",["bossy","funny","helpful","noisy"],3],
+  ["Kate is very ___. She always stays calm.",["bossy","generous","patient","rude"],2],
+  ["Toni’s ___ to leave her job. It’s a really bad idea.",["crazy","easy-going","helpful","serious"],0],
+  ["You need a ___ to look after all your plants.",["chef","gardener","journalist","mechanic"],1],
+  ["I’ve asked a ___ to help me organise my money.",["firefighter","financial consultant","plumber","musician"],1],
+  ["Idris works ___ in a restaurant. He only works on Saturdays.",["part-time","full-time","out of work","volunteer"],0],
+  ["Lidia organises the ___. She makes sure we get paid.",["professions","qualifications","runs","wages"],3],
+  ["I’d like to have a ___ in medicine after I finish university.",["career","profession","volunteer","responsible"],0]
+ ]}
+];
+const L="ABCD",quiz=document.getElementById("quiz");
+let n=0,total=0,checked=false;
+sections.forEach(s=>{
+  const h=document.createElement("h2");h.textContent=s.t;quiz.appendChild(h);
+  s.q.forEach(([text,opts,ans])=>{
+    n++;total++;const id=n;
+    const d=document.createElement("div");d.className="q";d.id="q"+id;
+    d.innerHTML=`<p><b>${id}</b>${text}</p>`+opts.map((o,i)=>
+      `<label class="opt" data-i="${i}"><input type="radio" name="q${id}" value="${i}"><span><b>${L[i]}</b> ${o}</span></label>`).join("")+`<div class="fb"></div>`;
+    d.dataset.ans=ans;quiz.appendChild(d);
+  });
+});
+quiz.addEventListener("change",e=>{
+  if(checked)return;
+  const q=e.target.closest(".q");
+  q.querySelectorAll(".opt").forEach(o=>o.classList.toggle("sel",o.querySelector("input").checked));
+});
+document.getElementById("check").onclick=()=>{
+  let score=0,empty=0;checked=true;
+  document.querySelectorAll(".q").forEach(q=>{
+    const ans=+q.dataset.ans,sel=q.querySelector("input:checked"),fb=q.querySelector(".fb");
+    q.classList.remove("ok","bad");
+    q.querySelectorAll(".opt").forEach(o=>{
+      o.classList.remove("right","wrong");
+      o.querySelector("input").disabled=true;
+      if(+o.dataset.i===ans)o.classList.add("right");
+    });
+    if(!sel){empty++;q.classList.add("bad");fb.textContent="No answer. Correct answer: "+L[ans]+".";return}
+    if(+sel.value===ans){score++;q.classList.add("ok");fb.textContent="Correct!"}
+    else{q.classList.add("bad");sel.closest(".opt").classList.add("wrong");fb.textContent="Not quite. Correct answer: "+L[ans]+"."}
+  });
+  const who=document.getElementById("who").value.trim();
+  document.getElementById("score").textContent=score+" / "+total;
+  document.getElementById("score").title=who?who+": "+score+"/"+total:"";
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+document.getElementById("reset").onclick=()=>{
+  checked=false;
+  document.querySelectorAll(".q").forEach(q=>{
+    q.classList.remove("ok","bad");q.querySelector(".fb").textContent="";
+    q.querySelectorAll(".opt").forEach(o=>{o.classList.remove("right","wrong","sel");const i=o.querySelector("input");i.checked=false;i.disabled=false});
+  });
+  document.getElementById("score").textContent="0 / "+total;
+  window.scrollTo({top:0,behavior:"smooth"});
+};
+</script>
+</body>
+</html>
